@@ -57,4 +57,15 @@ public class CsvUtil<T extends CsvItem> {
         return csvItemList;
     }
 
+    public static void outputTableToConsole(String headerRow, List<String> rows) {
+        System.out.println(headerRow);
+        rows.forEach(System.out::println);
+    }
+
+    public List<String> convertCsvObjectListToString(List<T> scheduleItemList) {
+        List<String> stringList = new ArrayList<>();
+        scheduleItemList.forEach(scheduleItem -> stringList.add(scheduleItem.formatForOutput()));
+        return stringList;
+    }
+
 }

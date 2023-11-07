@@ -1,1 +1,5 @@
-public abstract class CsvItem {}
+public abstract class CsvItem {
+
+    abstract String formatForOutput();
+
+}

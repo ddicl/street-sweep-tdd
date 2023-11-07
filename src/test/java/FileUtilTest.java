@@ -1,6 +1,8 @@
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 
@@ -11,6 +13,8 @@ public class FileUtilTest {
     private static URL url;
     private static URL dataUrl;
     private static URL badUrl;
+    private static final String fileName = "street_sweeping_data.csv";
+    private static final String falseFileName = "false_test.csv";
 
     @BeforeAll
     public static void init() {
@@ -32,16 +36,24 @@ public class FileUtilTest {
 
     @Test
     void downloadFile_returns_true() {
-        String fileName = "street_sweeping_data.csv";
         assert dataUrl != null;
         assertTrue(FileUtil.downloadFile(dataUrl, fileName));
     }
 
     @Test
     void downloadFile_returns_false_when_invalid_url() {
-        String fileName = "false_test.csv";
         assert url != null;
-        assertFalse(FileUtil.downloadFile(badUrl, fileName));
+        assertFalse(FileUtil.downloadFile(badUrl, falseFileName));
+    }
+
+    @AfterAll
+    public static void cleanup() {
+        File file = new File(fileName);
+        if (file.delete()) {
+            System.out.println(file.getName() + " was deleted.");
+        } else {
+            System.out.println(file.getName() + " was NOT deleted.");
+        }
     }
 
 }

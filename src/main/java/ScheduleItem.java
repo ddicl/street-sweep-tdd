@@ -9,6 +9,7 @@ public class ScheduleItem extends CsvItem {
     private String distName;
 
     public static final HashMap<Integer, String> scheduleItemHeaderRow;
+    public static final String headerRow;
 
     static {
         scheduleItemHeaderRow = new HashMap<>();
@@ -16,6 +17,9 @@ public class ScheduleItem extends CsvItem {
         scheduleItemHeaderRow.put(1, "setStreetName");
         scheduleItemHeaderRow.put(2, "setDist");
         scheduleItemHeaderRow.put(3, "setDistName");
+
+        headerRow = "Id | Street Name | Dist | Dist Name";
+
     }
 
     public ScheduleItem() {}
@@ -73,6 +77,14 @@ public class ScheduleItem extends CsvItem {
                 ", dist='" + dist + '\'' +
                 ", distName='" + distName + '\'' +
                 '}';
+    }
+
+    @Override
+    public String formatForOutput() {
+        return this.getId() + " | " +
+                this.getStreetName() + " | " +
+                this.getDist() + " | " +
+                this.getDistName();
     }
 
 }

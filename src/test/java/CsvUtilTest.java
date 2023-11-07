@@ -1,11 +1,10 @@
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 public class CsvUtilTest {
 
@@ -13,7 +12,9 @@ public class CsvUtilTest {
     private static ScheduleItem scheduleItem2;
     private static List<ScheduleItem> scheduleItemList;
     private static String[] lines;
+    private static List<String> linesList;
     private static CsvUtil<ScheduleItem> csvUtil;
+    private static final String fileName = "test_data.csv";
 
     @BeforeAll
     public static void init() {
@@ -38,6 +39,10 @@ public class CsvUtilTest {
                 "2,Test Street Name 2,10,Test Dist Name 2"
         };
 
+        linesList = new ArrayList<>();
+        linesList.add("1 | Test Street Name | 5 | Test Dist Name");
+        linesList.add("2 | Test Street Name 2 | 10 | Test Dist Name 2");
+
         csvUtil = new CsvUtil<>();
 
     }
@@ -51,7 +56,6 @@ public class CsvUtilTest {
 
     @Test
     void readFileToLineArr_returns_string_array() {
-        String fileName = "test_data.csv";
         String[] fileLines = CsvUtil.readFileToLineArr(fileName, true);
 
         assertEquals(lines[0], fileLines[0]);
@@ -64,6 +68,16 @@ public class CsvUtilTest {
 
         assertTrue(scheduleItemList.contains(scheduleItemListFromMethod.get(0)));
         assertTrue(scheduleItemList.contains(scheduleItemListFromMethod.get(1)));
+        assertEquals(scheduleItemList.size(), scheduleItemListFromMethod.size());
+    }
+
+    @Test
+    void convertCsvObjectListToString_returns_list() {
+        List<String> scheduleItemListFromMethod = csvUtil.convertCsvObjectListToString(scheduleItemList);
+
+        assertTrue(linesList.contains(scheduleItemListFromMethod.get(0)));
+        assertTrue(linesList.contains(scheduleItemListFromMethod.get(1)));
+        assertEquals(linesList.size(), scheduleItemListFromMethod.size());
     }
 
 }
