@@ -46,7 +46,7 @@ public class CsvUtilTest {
     void convertCsvLineToObject_returns_object() {
         String line = "1,Test Street Name,5,Test Dist Name";
 
-        assertEquals(scheduleItem, csvUtil.convertCsvLineToObject(line, Constant.delimiter, Constant.scheduleItemHeaderRow, ScheduleItem.class));
+        assertEquals(scheduleItem, csvUtil.convertCsvLineToObject(line, Constant.delimiter, ScheduleItem.scheduleItemHeaderRow, ScheduleItem.class));
     }
 
     @Test
@@ -60,7 +60,7 @@ public class CsvUtilTest {
 
     @Test
     void storeCsvObjectsInList_returns_list() {
-        List<ScheduleItem> scheduleItemListFromMethod = csvUtil.storeCsvObjectsInList(lines, Constant.delimiter, Constant.scheduleItemHeaderRow, ScheduleItem.class);
+        List<ScheduleItem> scheduleItemListFromMethod = csvUtil.storeCsvObjectsInList(lines, Constant.delimiter, ScheduleItem.scheduleItemHeaderRow, ScheduleItem.class);
 
         assertTrue(scheduleItemList.contains(scheduleItemListFromMethod.get(0)));
         assertTrue(scheduleItemList.contains(scheduleItemListFromMethod.get(1)));

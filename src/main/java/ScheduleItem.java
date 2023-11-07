@@ -1,3 +1,4 @@
+import java.util.HashMap;
 import java.util.Objects;
 
 public class ScheduleItem extends CsvItem {
@@ -7,9 +8,17 @@ public class ScheduleItem extends CsvItem {
     private String dist;
     private String distName;
 
-    public ScheduleItem() {
+    public static final HashMap<Integer, String> scheduleItemHeaderRow;
 
+    static {
+        scheduleItemHeaderRow = new HashMap<>();
+        scheduleItemHeaderRow.put(0, "setId");
+        scheduleItemHeaderRow.put(1, "setStreetName");
+        scheduleItemHeaderRow.put(2, "setDist");
+        scheduleItemHeaderRow.put(3, "setDistName");
     }
+
+    public ScheduleItem() {}
 
     public String getId() {
         return this.id;
