@@ -7,21 +7,25 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class CsvUtil {
+public class CsvUtil<T extends CsvItem> {
 
-    public static ScheduleItem convertCsvLineToObject(String line, String delimiter, HashMap<Integer, String> headerMap) {
+    public T convertCsvLineToObject(String line, String delimiter, HashMap<Integer, String> headerMap, Class<T> clazz) {
         String[] splitLine = line.split(delimiter);
-        ScheduleItem scheduleItem = new ScheduleItem();
-        for(int i = 0; i < splitLine.length; i++) {
-            Method method;
-            try {
-                method = scheduleItem.getClass().getMethod(headerMap.get(i), String.class);
-                method.invoke(scheduleItem, splitLine[i]);
-            } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
-                System.out.println("Error in convertCsvLineToObject: " + e.getMessage());
+        T csvItem = null;
+        try {
+            csvItem = clazz.getDeclaredConstructor().newInstance();
+            for (int i = 0; i < splitLine.length; i++) {
+                Method method;
+                method = csvItem.getClass().getMethod(headerMap.get(i), String.class);
+                method.invoke(csvItem, splitLine[i]);
             }
+        } catch (NoSuchMethodException
+                 | InvocationTargetException
+                 | IllegalAccessException
+                 | InstantiationException e) {
+            System.out.println("Error in convertCsvLineToObject: " + e.getMessage());
         }
-        return scheduleItem;
+        return csvItem;
     }
 
     public static String[] readFileToLineArr(String fileName, boolean headerRowPresent) {
@@ -44,13 +48,13 @@ public class CsvUtil {
         return filesToLinesArr;
     }
 
-    public static List<ScheduleItem> storeCsvObjectsInList(String[] lines, String delimiter, HashMap<Integer, String> headerMap) {
-        List<ScheduleItem> scheduleItemList = new ArrayList<>();
+    public  List<T> storeCsvObjectsInList(String[] lines, String delimiter, HashMap<Integer, String> headerMap, Class<T> clazz) {
+        List<T> csvItemList = new ArrayList<>();
         for(int i = 0; i < lines.length; i++) {
-            ScheduleItem scheduleItem = CsvUtil.convertCsvLineToObject(lines[0], delimiter, headerMap);
-            scheduleItemList.add(scheduleItem);
+            T csvItem = convertCsvLineToObject(lines[0], delimiter, headerMap, clazz);
+            csvItemList.add(csvItem);
         }
-        return scheduleItemList;
+        return csvItemList;
     }
 
 }

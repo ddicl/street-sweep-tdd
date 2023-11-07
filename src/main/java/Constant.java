@@ -6,6 +6,8 @@ public final class Constant {
 
     }
 
+    public static final String delimiter = ",";
+
     public static final HashMap<Integer, String> scheduleItemHeaderRow;
 
     static {

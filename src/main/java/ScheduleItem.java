@@ -1,6 +1,6 @@
 import java.util.Objects;
 
-public class ScheduleItem {
+public class ScheduleItem extends CsvItem {
 
     private String id;
     private String streetName;
