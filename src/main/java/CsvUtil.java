@@ -22,7 +22,8 @@ public class CsvUtil<T extends CsvItem> {
         } catch (NoSuchMethodException
                  | InvocationTargetException
                  | IllegalAccessException
-                 | InstantiationException e) {
+                 | InstantiationException
+                 | NullPointerException e) {
             System.out.println("Error in convertCsvLineToObject: " + e.getMessage());
         }
         return csvItem;
@@ -48,7 +49,7 @@ public class CsvUtil<T extends CsvItem> {
         return filesToLinesArr;
     }
 
-    public  List<T> storeCsvObjectsInList(String[] lines, String delimiter, HashMap<Integer, String> headerMap, Class<T> clazz) {
+    public List<T> storeCsvObjectsInList(String[] lines, String delimiter, HashMap<Integer, String> headerMap, Class<T> clazz) {
         List<T> csvItemList = new ArrayList<>();
         for(int i = 0; i < lines.length; i++) {
             T csvItem = convertCsvLineToObject(lines[0], delimiter, headerMap, clazz);

@@ -13,7 +13,7 @@ public class FileUtilTest {
     private static URL url;
     private static URL dataUrl;
     private static URL badUrl;
-    private static final String fileName = "street_sweeping_data.csv";
+    private static final String fileName = "street_sweeping_data_test.csv";
     private static final String falseFileName = "false_test.csv";
 
     @BeforeAll

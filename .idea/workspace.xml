@@ -6,12 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="05ab6a37-7694-4ccf-9a2e-303b81fa6ee1" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/CsvItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CsvItem.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/CsvUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CsvUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ScheduleItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ScheduleItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/CsvUtilTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/CsvUtilTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/StreetSweepApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/StreetSweepApp.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/FileUtilTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/FileUtilTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/street_sweeping_data.csv" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,7 +57,7 @@
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.CsvUtilTest.convertCsvLineToObject_returns_object">
+  <component name="RunManager" selected="Application.StreetSweepApp">
     <configuration name="StreetSweepApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="StreetSweepApp" />
       <module name="street-sweep-app" />
@@ -90,8 +87,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.CsvUtilTest.convertCsvLineToObject_returns_object" />
         <item itemvalue="Application.StreetSweepApp" />
+        <item itemvalue="JUnit.CsvUtilTest.convertCsvLineToObject_returns_object" />
         <item itemvalue="JUnit.FileUtilTest.fetchUrl_returns_url" />
       </list>
     </recent_temporary>
@@ -108,7 +105,8 @@
       <workItem from="1698836896566" duration="4260000" />
       <workItem from="1698922274950" duration="4218000" />
       <workItem from="1699012323082" duration="11392000" />
-      <workItem from="1699318988824" duration="6232000" />
+      <workItem from="1699318988824" duration="6914000" />
+      <workItem from="1699403171808" duration="1505000" />
     </task>
     <servers />
   </component>
