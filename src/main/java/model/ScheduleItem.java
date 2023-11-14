@@ -1,3 +1,5 @@
+package model;
+
 import java.util.HashMap;
 import java.util.Objects;
 
@@ -71,7 +73,7 @@ public class ScheduleItem extends CsvItem {
 
     @Override
     public String toString() {
-        return "ScheduleItem{" +
+        return "model.ScheduleItem{" +
                 "id='" + id + '\'' +
                 ", streetName='" + streetName + '\'' +
                 ", dist='" + dist + '\'' +
