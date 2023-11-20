@@ -1760,19 +1760,19 @@ main_id,st_name,dist,dist_name,start_time,end_time,side,from,to,miles,section,on
 1822,Montgomery St,1S,South End,12:00,16:00,Odd,Clarendon St,West Canton St,0.1848,,f,t,f,t,f,t,f,f,f,t,f,f,f,f,f,t,2012-02-14 13:36:32+00,MONTG1,0,976
 1823,Montrose St,10R,Roxbury,08:00,12:00,Even,Warren St,Moreland St,0.1580,,f,f,t,f,t,f,f,f,t,f,f,f,f,f,f,f,2012-02-14 13:36:32+00,MONTR1,0,834
 1824,Montrose St,10R,Roxbury,08:00,12:00,Odd,Warren St,Moreland St,0.1580,,f,t,f,t,f,f,f,f,t,f,f,f,f,f,f,f,2012-02-14 13:36:32+00,MONTR1,0,834
-1825,Monument Ave,1C,Charlestown,08:00,12:00,Even,Main St,Monument Sq,0.1612,,f,f,t,f,t,f,f,f,f,t,f,f,f,f,f,f,2012-02-14 13:36:32+00,MONUM1,0,851
-1826,Monument Ave,1C,Charlestown,08:00,12:00,Odd,Main St,Monument Sq,0.1612,,f,t,f,t,f,f,f,f,f,t,f,f,f,f,f,f,2012-02-14 13:36:32+00,MONUM1,0,851
-1827,Monument Ct,1C,Charlestown,08:00,12:00,Even,Winthrop St,Dead End,0.0500,,f,f,t,f,t,f,f,f,f,t,f,f,f,f,f,f,2012-02-14 13:36:32+00,MONUM2,0,264
-1828,Monument Ct,1C,Charlestown,08:00,12:00,Odd,Winthrop St,Dead End,0.0500,,f,t,f,t,f,f,f,f,f,t,f,f,f,f,f,f,2012-02-14 13:36:32+00,MONUM2,0,264
-1829,Monument Sq,1C,Charlestown,08:00,12:00,Odd,Monument St,High St,0.1326,,f,t,f,t,f,f,f,f,f,t,f,f,f,f,f,f,2012-02-14 13:36:32+00,MONUM3,450,1150
+1825,Monument Ave,1C,Charlestown,12:00,16:00,Even,Main St,Monument Sq,0.1612,,f,f,t,f,t,f,f,f,f,t,f,f,f,f,f,f,2023-11-17 21:09:45+00,MONUM1,0,851
+1826,Monument Ave,1C,Charlestown,12:00,16:00,Odd,Main St,Monument Sq,0.1612,,f,t,f,t,f,f,f,f,f,t,f,f,f,f,f,f,2023-11-17 21:09:39+00,MONUM1,0,851
+1827,Monument Ct,1C,Charlestown,12:00,16:00,Even,Winthrop St,Dead End,0.0500,,f,f,t,f,t,f,f,f,f,t,f,f,f,f,f,f,2023-11-17 21:09:32+00,MONUM2,0,264
+1828,Monument Ct,1C,Charlestown,12:00,16:00,Odd,Winthrop St,Dead End,0.0500,,f,t,f,t,f,f,f,f,f,t,f,f,f,f,f,f,2023-11-17 21:09:25+00,MONUM2,0,264
+1829,Monument Sq,1C,Charlestown,12:00,16:00,Odd,Monument St,High St,0.1326,,f,t,f,t,f,f,f,f,f,t,f,f,f,f,f,f,2023-11-17 21:09:13+00,MONUM3,450,1150
 1830,Potosi St,3,North Dorchester,08:00,12:00,Even,Percival St,Mount Ida Rd,0.0731,,f,f,t,f,t,f,f,f,f,f,t,f,f,f,f,f,2012-02-14 13:36:32+00,POTOS1,0,386
-1831,Monument Sq,1C,Charlestown,08:00,12:00,Even,High St,Monument Ave,0.0407,,f,f,t,f,t,f,f,f,f,t,f,f,f,f,f,f,2012-02-14 13:36:32+00,MONUM3,1150,1365
-1832,Monument St,1C,Charlestown,08:00,12:00,Even,Monument Sq,Bunker Hill St,0.0837,,f,f,t,f,t,f,f,f,f,t,f,f,f,f,f,f,2012-02-14 13:36:32+00,MONUM4,0,442
+1831,Monument Sq,1C,Charlestown,12:00,16:00,Even,High St,Monument Ave,0.0407,,f,f,t,f,t,f,f,f,f,t,f,f,f,f,f,f,2023-11-17 21:09:06+00,MONUM3,1150,1365
+1832,Monument St,1C,Charlestown,12:00,16:00,Even,Monument Sq,Bunker Hill St,0.0837,,f,f,t,f,t,f,f,f,f,t,f,f,f,f,f,f,2023-11-17 21:08:57+00,MONUM4,0,442
 1833,Parsons St,4,Allston/Brighton,12:00,16:00,Even,Washington St,Faneuil St,0.4809,,f,f,t,f,t,f,f,f,t,f,f,f,f,f,f,f,2012-02-14 13:36:32+00,PARSO1,0,2539
 1834,New St,9,East Boston,08:00,12:00,Odd,Sumner St,Maverick St,0.0966,,f,t,t,t,t,t,f,f,f,t,f,f,f,f,f,f,2012-02-14 13:36:32+00,NEW S1,0,510
-1835,Monument St,1C,Charlestown,08:00,12:00,Odd,Monument Sq,Bunker Hill St,0.0837,,f,t,f,t,f,f,f,f,f,t,f,f,f,f,f,f,2012-02-14 13:36:32+00,MONUM4,0,442
-1836,Monument St,1C,Charlestown,08:00,12:00,Even,Bunker Hill St,Medford St,0.1218,,f,t,f,t,f,f,f,f,f,f,t,f,f,f,f,f,2012-02-29 15:06:53+00,MONUM4,442,1085
-1837,Monument St,1C,Charlestown,08:00,12:00,Odd,Bunker Hill St,Medford St,0.1218,,f,f,t,f,t,f,f,f,f,f,t,f,f,f,f,f,2012-02-29 15:06:53+00,MONUM4,442,1085
+1835,Monument St,1C,Charlestown,12:00,16:00,Odd,Monument Sq,Bunker Hill St,0.0837,,f,t,f,t,f,f,f,f,f,t,f,f,f,f,f,f,2023-11-17 21:08:39+00,MONUM4,0,442
+1836,Monument St,1C,Charlestown,12:00,16:00,Even,Bunker Hill St,Medford St,0.1218,,f,t,f,t,f,f,f,f,f,f,t,f,f,f,f,f,2023-11-17 21:08:31+00,MONUM4,442,1085
+1837,Monument St,1C,Charlestown,12:00,16:00,Odd,Bunker Hill St,Medford St,0.1218,,f,f,t,f,t,f,f,f,f,f,t,f,f,f,f,f,2023-11-17 21:08:22+00,MONUM4,442,1085
 1838,Moore St,9,East Boston,12:00,16:00,Even,Saratoga St,Dead End,0.2313,,f,f,t,f,t,f,f,f,f,f,f,t,f,f,f,f,2012-02-14 13:36:32+00,MOORE1,766,1987
 1839,Moore St,9,East Boston,12:00,16:00,Odd,Saratoga St,Dead End,0.2313,,f,t,f,t,f,f,f,f,f,f,f,t,f,f,f,f,2012-02-14 13:36:32+00,MOORE1,766,1987
 1840,Moraine St,2,Jamaica Plain,12:00,16:00,Odd,Centre St,Jamaicaway,0.2809,,f,t,f,t,f,f,f,f,f,t,f,f,f,f,f,f,2012-02-14 13:36:32+00,MORAI1,0,1483
