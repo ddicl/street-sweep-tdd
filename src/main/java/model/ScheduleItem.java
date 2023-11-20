@@ -3,22 +3,22 @@ package model;
 import java.util.HashMap;
 import java.util.Objects;
 
-public class ScheduleItem extends CsvItem {
+public class ScheduleItem implements CsvItem {
 
     private String id;
     private String streetName;
     private String dist;
     private String distName;
 
-    public static final HashMap<Integer, String> scheduleItemHeaderRow;
-    public static final String headerRow;
+    private static final HashMap<Integer, String> methodHeaderRow;
+    private static final String headerRow;
 
     static {
-        scheduleItemHeaderRow = new HashMap<>();
-        scheduleItemHeaderRow.put(0, "setId");
-        scheduleItemHeaderRow.put(1, "setStreetName");
-        scheduleItemHeaderRow.put(2, "setDist");
-        scheduleItemHeaderRow.put(3, "setDistName");
+        methodHeaderRow = new HashMap<>();
+        methodHeaderRow.put(0, "setId");
+        methodHeaderRow.put(1, "setStreetName");
+        methodHeaderRow.put(2, "setDist");
+        methodHeaderRow.put(3, "setDistName");
 
         headerRow = "Id | Street Name | Dist | Dist Name";
 
@@ -56,6 +56,21 @@ public class ScheduleItem extends CsvItem {
 
     public void setDistName(String distName) {
         this.distName = distName;
+    }
+
+    @Override
+    public HashMap<Integer, String> getMethodHashMap() {
+        return methodHeaderRow;
+    }
+
+    @Override
+    public String getHeaderRow() {
+        return headerRow;
+    }
+
+    @Override
+    public Class<ScheduleItem> getClazz() {
+        return ScheduleItem.class;
     }
 
     @Override

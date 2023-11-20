@@ -1,7 +1,15 @@
 package model;
 
-public abstract class CsvItem {
+import java.util.HashMap;
 
-    public abstract String formatForOutput();
+public interface CsvItem {
+
+    String formatForOutput();
+
+    HashMap<Integer, String> getMethodHashMap();
+
+    String getHeaderRow();
+
+    Class<? extends CsvItem> getClazz();
 
 }

@@ -1,35 +1,34 @@
+import model.CsvItem;
+import model.ScheduleItem;
+import util.Constant;
+import util.CsvUtil;
+
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 
 public class StreetSweepApp {
 
+    private static final String fileUrl = "https://data.boston.gov/dataset/00c015a1-2b62-4072-a71e-79b292ce9670/resource/9fdbdcad-67c8-4b23-b6ec-861e77d56227/download/tmpx9lbex7l.csv";
     private static final String fileName = "street_sweeping_data.csv";
-    private static URL dataUrl;
-    private static final CsvUtil<ScheduleItem> csvUtil = new CsvUtil<>();
+    private static final CsvItem csvItem = new ScheduleItem();
+    private static final CsvUtil<CsvItem> csvUtil = new CsvUtil<>(ScheduleItem.class);
     private static final boolean headerRowPresent = true;
 
     public static void main(String[] args) {
         System.out.println("Street Sweep Application");
-        dataUrl = fetchUrl("https://data.boston.gov/dataset/00c015a1-2b62-4072-a71e-79b292ce9670/resource/9fdbdcad-67c8-4b23-b6ec-861e77d56227/download/tmpx9lbex7l.csv");
+        downloadFile(fileUrl, fileName);
+        List<CsvItem> csvItemList = convertFileToObjectList(fileName, headerRowPresent, csvItem);
+        convertToStringAndOutput(csvItemList, csvItem);
+    }
 
-        if(dataUrl != null) {
-            FileUtil.downloadFile(dataUrl, fileName);
+    private static boolean downloadFile(String urlName, String fileName) {
+        URL url = fetchUrl(urlName);
+        if(url != null) {
+            return util.FileUtil.downloadFile(url, fileName);
         } else {
             throw new RuntimeException("Invalid URL");
         }
-
-        String[] fileLines = CsvUtil.readFileToLineArr(fileName, headerRowPresent);
-        List<ScheduleItem> scheduleItemList = new ArrayList<>();
-
-        for (String fileLine : fileLines) {
-            ScheduleItem scheduleItem = csvUtil.convertCsvLineToObject(fileLine, Constant.delimiter, ScheduleItem.scheduleItemHeaderRow, ScheduleItem.class);
-            scheduleItemList.add(scheduleItem);
-        }
-
-        List<String> stringList = csvUtil.convertCsvObjectListToString(scheduleItemList);
-        CsvUtil.outputTableToConsole(ScheduleItem.headerRow, stringList);
     }
 
     private static URL fetchUrl(String url) {
@@ -37,9 +36,19 @@ public class StreetSweepApp {
         try {
             dataUrl = new URL(url);
         } catch(MalformedURLException e) {
-            System.out.println("Error in StreetSweepApp main method: " + e.getMessage());
+            System.out.println("Error in StreetSweepApp fetchUrl method: " + e.getMessage());
         }
         return dataUrl;
+    }
+
+    private static List<CsvItem> convertFileToObjectList(String fileName, boolean headerRowPresent, CsvItem csvItem) {
+        String[] fileLines = CsvUtil.readFileToLineArr(fileName, headerRowPresent);
+        return csvUtil.storeCsvObjectsInList(fileLines, Constant.DELIMITER, csvItem.getMethodHashMap());
+    }
+
+    private static void convertToStringAndOutput(List<CsvItem> csvItemList, CsvItem csvItem) {
+        List<String> csvItemString = csvUtil.convertCsvObjectListToString(csvItemList);
+        CsvUtil.outputTableToConsole(csvItem.getHeaderRow(), csvItemString);
     }
 
 }

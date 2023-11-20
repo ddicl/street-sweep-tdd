@@ -13,7 +13,13 @@ import java.util.List;
 
 public class CsvUtil<T extends CsvItem> {
 
-    public T convertCsvLineToObject(String line, String delimiter, HashMap<Integer, String> headerMap, Class<T> clazz) {
+    private final Class<? extends T> clazz;
+
+    public CsvUtil(Class<? extends T> clazz) {
+        this.clazz = clazz;
+    }
+
+    public T convertCsvLineToObject(String line, String delimiter, HashMap<Integer, String> headerMap) {
         String[] splitLine = line.split(delimiter);
         T csvItem = null;
         try {
@@ -53,10 +59,10 @@ public class CsvUtil<T extends CsvItem> {
         return filesToLinesArr;
     }
 
-    public List<T> storeCsvObjectsInList(String[] lines, String delimiter, HashMap<Integer, String> headerMap, Class<T> clazz) {
+    public List<T> storeCsvObjectsInList(String[] lines, String delimiter, HashMap<Integer, String> headerMap) {
         List<T> csvItemList = new ArrayList<>();
-        for(int i = 0; i < lines.length; i++) {
-            T csvItem = convertCsvLineToObject(lines[0], delimiter, headerMap, clazz);
+        for (String line : lines) {
+            T csvItem = convertCsvLineToObject(line, delimiter, headerMap);
             csvItemList.add(csvItem);
         }
         return csvItemList;
