@@ -46,7 +46,7 @@ public class CsvUtilTest {
         linesList.add("1 | Test Street Name | 5 | Test Dist Name");
         linesList.add("2 | Test Street Name 2 | 10 | Test Dist Name 2");
 
-        csvUtil = new CsvUtil<>();
+        csvUtil = new CsvUtil<>(ScheduleItem.class);
 
     }
 
@@ -54,7 +54,7 @@ public class CsvUtilTest {
     void convertCsvLineToObject_returns_object() {
         String line = "1,Test Street Name,5,Test Dist Name";
 
-        assertEquals(scheduleItem, csvUtil.convertCsvLineToObject(line, Constant.DELIMITER, ScheduleItem.scheduleItemHeaderRow, ScheduleItem.class));
+        assertEquals(scheduleItem, csvUtil.convertCsvLineToObject(line, Constant.DELIMITER, scheduleItem.getMethodHashMap()));
     }
 
     @Test
@@ -67,7 +67,7 @@ public class CsvUtilTest {
 
     @Test
     void storeCsvObjectsInList_returns_list() {
-        List<ScheduleItem> scheduleItemListFromMethod = csvUtil.storeCsvObjectsInList(lines, Constant.DELIMITER, ScheduleItem.scheduleItemHeaderRow, ScheduleItem.class);
+        List<ScheduleItem> scheduleItemListFromMethod = csvUtil.storeCsvObjectsInList(lines, Constant.DELIMITER, scheduleItem.getMethodHashMap());
 
         assertTrue(scheduleItemList.contains(scheduleItemListFromMethod.get(0)));
         assertTrue(scheduleItemList.contains(scheduleItemListFromMethod.get(1)));
