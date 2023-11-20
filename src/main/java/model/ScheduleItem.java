@@ -69,11 +69,6 @@ public class ScheduleItem implements CsvItem {
     }
 
     @Override
-    public Class<ScheduleItem> getClazz() {
-        return ScheduleItem.class;
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;

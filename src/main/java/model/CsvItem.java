@@ -10,6 +10,4 @@ public interface CsvItem {
 
     String getHeaderRow();
 
-    Class<? extends CsvItem> getClazz();
-
 }
