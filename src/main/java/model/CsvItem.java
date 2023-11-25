@@ -4,8 +4,6 @@ import java.util.HashMap;
 
 public interface CsvItem {
 
-    String formatForOutput();
-
     HashMap<Integer, String> getMethodHashMap();
 
     String getHeaderRow();

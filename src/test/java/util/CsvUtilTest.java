@@ -43,8 +43,8 @@ public class CsvUtilTest {
         };
 
         linesList = new ArrayList<>();
-        linesList.add("1 | Test Street Name | 5 | Test Dist Name");
-        linesList.add("2 | Test Street Name 2 | 10 | Test Dist Name 2");
+        linesList.add("ScheduleItem{id='1', streetName='Test Street Name', dist='5', distName='Test Dist Name', startTime='null', endTime='null', fromStreet='null', toStreet='null', miles=null, section='null', oneWay='null', week1='null', week2='null', week3='null', week4='null', week5='null', sunday='null', monday='null', tuesday='null', wednesday='null', thursday='null', friday='null', saturday='null', everyDay='null', yearRound='null', northEndPilot='null', timestamp=null, parent='null', losta='null', hista='null'}");
+        linesList.add("ScheduleItem{id='2', streetName='Test Street Name 2', dist='10', distName='Test Dist Name 2', startTime='null', endTime='null', fromStreet='null', toStreet='null', miles=null, section='null', oneWay='null', week1='null', week2='null', week3='null', week4='null', week5='null', sunday='null', monday='null', tuesday='null', wednesday='null', thursday='null', friday='null', saturday='null', everyDay='null', yearRound='null', northEndPilot='null', timestamp=null, parent='null', losta='null', hista='null'}");
 
         csvUtil = new CsvUtil<>(ScheduleItem.class);
 

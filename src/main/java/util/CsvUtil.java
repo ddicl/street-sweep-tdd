@@ -26,8 +26,12 @@ public class CsvUtil<T extends CsvItem> {
             csvItem = clazz.getDeclaredConstructor().newInstance();
             for (int i = 0; i < splitLine.length; i++) {
                 Method method;
-                method = csvItem.getClass().getMethod(headerMap.get(i), String.class);
-                method.invoke(csvItem, splitLine[i]);
+                try {
+                    method = csvItem.getClass().getMethod(headerMap.get(i), String.class);
+                    method.invoke(csvItem, splitLine[i]);
+                } catch (NoSuchMethodException e) {
+                    System.out.println("Error in convertCsvLineToObject: " + e.getMessage());
+                }
             }
         } catch (NoSuchMethodException
                  | InvocationTargetException
@@ -75,7 +79,7 @@ public class CsvUtil<T extends CsvItem> {
 
     public List<String> convertCsvObjectListToString(List<T> scheduleItemList) {
         List<String> stringList = new ArrayList<>();
-        scheduleItemList.forEach(scheduleItem -> stringList.add(scheduleItem.formatForOutput()));
+        scheduleItemList.forEach(scheduleItem -> stringList.add(scheduleItem.toString()));
         return stringList;
     }
 
