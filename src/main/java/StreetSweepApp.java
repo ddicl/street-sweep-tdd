@@ -1,3 +1,6 @@
+import config.BasicDataSourceImpl;
+import dao.Dao;
+import dao.ScheduleItemDao;
 import model.CsvItem;
 import model.ScheduleItem;
 import util.Constant;
@@ -5,6 +8,9 @@ import util.CsvUtil;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class StreetSweepApp {
@@ -19,7 +25,15 @@ public class StreetSweepApp {
         System.out.println("Street Sweep Application");
         downloadFile(fileUrl, fileName);
         List<CsvItem> csvItemList = convertFileToObjectList(fileName, headerRowPresent, csvItem);
-        convertToStringAndOutput(csvItemList, csvItem);
+        try {
+            Connection conn = BasicDataSourceImpl.getDataSource().getConnection();
+            Dao<ScheduleItem> dao = new ScheduleItemDao(conn);
+            List<ScheduleItem> scheduleItemList = downcastScheduleItemList(csvItemList);
+            saveAllScheduleItems(scheduleItemList, dao);
+        } catch (SQLException e) {
+            System.out.println("Error in saveAllScheduleItems: " + e.getMessage());
+        }
+//        convertToStringAndOutput(csvItemList, csvItem);
     }
 
     private static boolean downloadFile(String urlName, String fileName) {
@@ -49,6 +63,19 @@ public class StreetSweepApp {
     private static void convertToStringAndOutput(List<CsvItem> csvItemList, CsvItem csvItem) {
         List<String> csvItemString = csvUtil.convertCsvObjectListToString(csvItemList);
         CsvUtil.outputTableToConsole(csvItem.getHeaderRow(), csvItemString);
+    }
+
+    private static List<ScheduleItem> downcastScheduleItemList(List<CsvItem> csvItemList) {
+        List<ScheduleItem> scheduleItemList = new ArrayList<>();
+        for(CsvItem csvItem : csvItemList) {
+            ScheduleItem scheduleItem = (ScheduleItem) csvItem;
+            scheduleItemList.add(scheduleItem);
+        }
+        return scheduleItemList;
+    }
+
+    private static List<ScheduleItem> saveAllScheduleItems(List<ScheduleItem> scheduleItemList, Dao<ScheduleItem> dao) throws SQLException {
+        return dao.saveAll(scheduleItemList);
     }
 
 }

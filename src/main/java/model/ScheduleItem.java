@@ -15,7 +15,7 @@ public class ScheduleItem implements CsvItem {
     private String side;
     private String fromStreet;
     private String toStreet;
-    private Float miles;
+    private String miles;
     private String section;
     private String oneWay;
     private String week1;
@@ -33,7 +33,7 @@ public class ScheduleItem implements CsvItem {
     private String everyDay;
     private String yearRound;
     private String northEndPilot;
-    private Timestamp timestamp;
+    private String timestamp;
     private String parent;
     private String losta;
     private String hista;
@@ -152,11 +152,11 @@ public class ScheduleItem implements CsvItem {
         this.toStreet = toStreet;
     }
 
-    public Float getMiles() {
+    public String getMiles() {
         return miles;
     }
 
-    public void setMiles(Float miles) {
+    public void setMiles(String miles) {
         this.miles = miles;
     }
 
@@ -296,11 +296,11 @@ public class ScheduleItem implements CsvItem {
         this.northEndPilot = northEndPilot;
     }
 
-    public Timestamp getTimestamp() {
+    public String getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(Timestamp timestamp) {
+    public void setTimestamp(String timestamp) {
         this.timestamp = timestamp;
     }
 
