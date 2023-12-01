@@ -15,7 +15,7 @@ public class ScheduleItemService {
         this.scheduleItemDao = scheduleItemDao;
     }
 
-    public Optional<ScheduleItem> getById(long id) {
+    public Optional<ScheduleItem> getById(long id) throws SQLException {
         return scheduleItemDao.getById(id);
     }
 
