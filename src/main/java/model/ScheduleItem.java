@@ -40,6 +40,7 @@ public class ScheduleItem implements CsvItem {
 
     private static final HashMap<Integer, String> methodHeaderRow;
     private static final String headerRow;
+    private static final boolean headerRowPresent;
 
     static {
         methodHeaderRow = new HashMap<>();
@@ -76,6 +77,7 @@ public class ScheduleItem implements CsvItem {
         methodHeaderRow.put(30, "setHista");
 
         headerRow = "main_id,st_name,dist,dist_name,start_time,end_time,side,from,to,miles,section,one_way,week_1,week_2,week_3,week_4,week_5,sunday,monday,tuesday,wednesday,thursday,friday,saturday,every_day,year_round,north_end_pilot,timestamp,parent,losta,hista";
+        headerRowPresent = true;
     }
 
     public ScheduleItem() {}
@@ -336,6 +338,10 @@ public class ScheduleItem implements CsvItem {
     @Override
     public String getHeaderRow() {
         return headerRow;
+    }
+
+    public static boolean getHeaderRowPresent() {
+        return headerRowPresent;
     }
 
     @Override

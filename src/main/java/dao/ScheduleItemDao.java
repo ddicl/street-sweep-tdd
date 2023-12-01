@@ -24,23 +24,20 @@ public class ScheduleItemDao implements Dao<ScheduleItem> {
     }
 
     @Override
-    public Optional<ScheduleItem> getById(long id) {
+    public Optional<ScheduleItem> getById(long id) throws SQLException {
         Optional<ScheduleItem> scheduleItemOptional = Optional.empty();
-        try(PreparedStatement preparedStatement = conn.prepareStatement(SELECT_BY_ID)) {
-            preparedStatement.setLong(1, id);
-            ResultSet rs = preparedStatement.executeQuery();
-            if (rs.first()) {
-                ScheduleItem scheduleItem = new ScheduleItem();
-                scheduleItem.setId(rs.getString(1));
-                scheduleItem.setStreetName(rs.getString(2));
-                scheduleItem.setDist(rs.getString(3));
-                scheduleItem.setDistName(rs.getString(4));
-                scheduleItemOptional = Optional.of(scheduleItem);
-            }
-        } catch (SQLException e) {
-            System.out.println("Error in getById method: " + e.getMessage());
+        PreparedStatement preparedStatement = conn.prepareStatement(SELECT_BY_ID);
+        preparedStatement.setLong(1, id);
+        ResultSet rs = preparedStatement.executeQuery();
+        if (rs.first()) {
+            ScheduleItem scheduleItem = new ScheduleItem();
+            scheduleItem.setId(rs.getString(1));
+            scheduleItem.setStreetName(rs.getString(2));
+            scheduleItem.setDist(rs.getString(3));
+            scheduleItem.setDistName(rs.getString(4));
+            scheduleItemOptional = Optional.of(scheduleItem);
         }
-
+        
         return scheduleItemOptional;
     }
 
