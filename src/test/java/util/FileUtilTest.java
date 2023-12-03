@@ -15,6 +15,7 @@ public class FileUtilTest {
     private static URL url;
     private static URL dataUrl;
     private static URL badUrl;
+    private static URL malformedUrl;
     private static final String fileName = "street_sweeping_data_test.csv";
     private static final String falseFileName = "false_test.csv";
 
@@ -31,20 +32,33 @@ public class FileUtilTest {
 
     @Test
     void fetchUrl_returns_url() {
-        URL urlFromMethod;
-        urlFromMethod = FileUtil.fetchUrl("https://www.google.com");
+        URL urlFromMethod = null;
+        try {
+            urlFromMethod = FileUtil.fetchUrl("https://www.google.com");
+        } catch (MalformedURLException e) {
+            fail();
+        }
+        assertNotNull(urlFromMethod);
         assertEquals(url, urlFromMethod);
     }
 
     @Test
+    void fetchUrl_throws_exception_when_malformed() {
+        try {
+            FileUtil.fetchUrl("fsfsfsf");
+            fail();
+        } catch(MalformedURLException ignored) {}
+    }
+
+    @Test
     void downloadFile_returns_true() {
-        assert dataUrl != null;
+        assertNotNull(dataUrl);
         assertTrue(FileUtil.downloadFile(dataUrl, fileName));
     }
 
     @Test
     void downloadFile_returns_false_when_invalid_url() {
-        assert url != null;
+        assertNotNull(badUrl);
         assertFalse(FileUtil.downloadFile(badUrl, falseFileName));
     }
 

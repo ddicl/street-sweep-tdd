@@ -6,14 +6,8 @@ import java.net.URL;
 
 public class FileUtil {
 
-    public static URL fetchUrl(String urlString) {
-        URL url = null;
-        try {
-            url = new URL(urlString);
-        } catch (MalformedURLException e) {
-            System.out.println("Error in fetchUrl method: " + e.getMessage());
-        }
-        return url;
+    public static URL fetchUrl(String urlString) throws MalformedURLException {
+        return new URL(urlString);
     }
 
     public static boolean downloadFile(URL url, String fileName) {
