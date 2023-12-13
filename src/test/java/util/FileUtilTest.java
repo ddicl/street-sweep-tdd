@@ -53,13 +53,22 @@ public class FileUtilTest {
     @Test
     void downloadFile_returns_true() {
         assertNotNull(dataUrl);
-        assertTrue(FileUtil.downloadFile(dataUrl, fileName));
+        try {
+            FileUtil.downloadFile(dataUrl, fileName);
+        } catch (UtilException e) {
+            fail();
+        }
     }
 
     @Test
     void downloadFile_returns_false_when_invalid_url() {
         assertNotNull(badUrl);
-        assertFalse(FileUtil.downloadFile(badUrl, falseFileName));
+        try {
+            FileUtil.downloadFile(badUrl, falseFileName);
+            fail();
+        } catch (UtilException ignored) {
+
+        }
     }
 
     @AfterAll

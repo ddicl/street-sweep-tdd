@@ -1,7 +1,5 @@
 package util;
 
-import model.CsvItem;
-
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -10,6 +8,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import model.CsvItem;
 
 public class CsvUtil<T extends CsvItem> {
 
@@ -19,7 +18,7 @@ public class CsvUtil<T extends CsvItem> {
         this.clazz = clazz;
     }
 
-    public T convertCsvLineToObject(String line, String delimiter, HashMap<Integer, String> headerMap) {
+    public T convertCsvLineToObject(String line, String delimiter, HashMap<Integer, String> headerMap) throws UtilException {
         String[] splitLine = line.split(delimiter);
         T csvItem = null;
         try {
@@ -30,7 +29,7 @@ public class CsvUtil<T extends CsvItem> {
                     method = csvItem.getClass().getMethod(headerMap.get(i), String.class);
                     method.invoke(csvItem, splitLine[i]);
                 } catch (NoSuchMethodException e) {
-                    System.out.println("Error in convertCsvLineToObject: " + e.getMessage());
+                    throw new UtilException("Error in convertCsvLineToObject: " + e.getMessage());
                 }
             }
         } catch (NoSuchMethodException
@@ -38,32 +37,28 @@ public class CsvUtil<T extends CsvItem> {
                  | IllegalAccessException
                  | InstantiationException
                  | NullPointerException e) {
-            System.out.println("Error in convertCsvLineToObject: " + e.getMessage());
+            throw new UtilException("Error in convertCsvLineToObject: " + e.getMessage());
         }
         return csvItem;
     }
 
-    public static String[] readFileToLineArr(String fileName, boolean headerRowPresent) {
+    public static String[] readFileToLineArr(String fileName, boolean headerRowPresent) throws UtilException {
         Path file = Path.of(System.getProperty("user.dir") + "/" + fileName);
-        List<String> fileToLines = null;
+        List<String> fileToLines;
         String[] filesToLinesArr;
         try {
             fileToLines = Files.readAllLines(file);
         } catch (IOException e) {
-            System.out.println("Error in readFileToLineArr: " + e.getMessage());
+            throw new UtilException("Error in readFileToLineArr: " + e.getMessage());
         }
-        if(fileToLines != null && headerRowPresent) {
+        if(headerRowPresent) {
             fileToLines.remove(0);
         }
-        if(fileToLines != null) {
-            filesToLinesArr = fileToLines.toArray(new String[fileToLines.size()]);
-        } else {
-            return new String[0];
-        }
+        filesToLinesArr = fileToLines.toArray(new String[0]);
         return filesToLinesArr;
     }
 
-    public List<T> storeCsvObjectsInList(String[] lines, String delimiter, HashMap<Integer, String> headerMap) {
+    public List<T> storeCsvObjectsInList(String[] lines, String delimiter, HashMap<Integer, String> headerMap) throws UtilException {
         List<T> csvItemList = new ArrayList<>();
         for (String line : lines) {
             T csvItem = convertCsvLineToObject(line, delimiter, headerMap);

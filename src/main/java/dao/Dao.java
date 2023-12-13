@@ -10,8 +10,6 @@ public interface Dao<T> {
 
     Optional<T> getById(long id) throws SQLException;
 
-    Optional<T> save(T model) throws SQLException;
-
     List<T> saveAll(List<T> modelList) throws SQLException;
 
 }

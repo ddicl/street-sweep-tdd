@@ -10,17 +10,13 @@ public class FileUtil {
         return new URL(urlString);
     }
 
-    public static boolean downloadFile(URL url, String fileName) {
+    public static void downloadFile(URL url, String fileName) throws UtilException {
         File file = new File(System.getProperty("user.dir") + "/" + fileName);
-        boolean fileWasWritten = false;
         try (BufferedInputStream in = new BufferedInputStream(url.openStream()); FileOutputStream out = new FileOutputStream(file)) {
             out.write(in.readAllBytes());
-            fileWasWritten = true;
         } catch (IOException e) {
-            fileWasWritten = false;
-            System.out.println("Error in downloadFile method: " + e.getMessage());
+            throw new UtilException("Error in downloadFile method: " + e.getMessage());
         }
-        return fileWasWritten;
     }
 
 }

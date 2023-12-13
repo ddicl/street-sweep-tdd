@@ -37,13 +37,8 @@ public class ScheduleItemDao implements Dao<ScheduleItem> {
             scheduleItem.setDistName(rs.getString(4));
             scheduleItemOptional = Optional.of(scheduleItem);
         }
-        
-        return scheduleItemOptional;
-    }
 
-    @Override
-    public Optional<ScheduleItem> save(ScheduleItem scheduleItem) throws SQLException {
-        return Optional.empty();
+        return scheduleItemOptional;
     }
 
     @Override

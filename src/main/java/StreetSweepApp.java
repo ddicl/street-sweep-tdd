@@ -3,8 +3,10 @@ import dao.Dao;
 import dao.ScheduleItemDao;
 import model.CsvItem;
 import model.ScheduleItem;
+import service.ScheduleItemService;
 import util.Constant;
 import util.CsvUtil;
+import util.UtilException;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -23,23 +25,27 @@ public class StreetSweepApp {
 
     public static void main(String[] args) {
         System.out.println("Street Sweep Application");
-        downloadFile(fileUrl, fileName);
-        List<CsvItem> csvItemList = convertFileToObjectList(fileName, headerRowPresent, csvItem);
+        List<CsvItem> csvItemList;
         try {
+            downloadFile(fileUrl, fileName);
+            csvItemList = convertFileToObjectList(fileName, headerRowPresent, csvItem);
             Connection conn = BasicDataSourceImpl.getDataSource().getConnection();
             Dao<ScheduleItem> dao = new ScheduleItemDao(conn);
+            ScheduleItemService scheduleItemService = new ScheduleItemService(dao);
             List<ScheduleItem> scheduleItemList = downcastScheduleItemList(csvItemList);
-            saveAllScheduleItems(scheduleItemList, dao);
+            saveAllScheduleItems(scheduleItemList, scheduleItemService);
         } catch (SQLException e) {
-            System.out.println("Error in saveAllScheduleItems: " + e.getMessage());
+            throw new RuntimeException("Error in saveAllScheduleItems: " + e.getMessage());
+        } catch (UtilException e) {
+            throw new RuntimeException(e.getMessage());
         }
 //        convertToStringAndOutput(csvItemList, csvItem);
     }
 
-    private static boolean downloadFile(String urlName, String fileName) {
+    private static void downloadFile(String urlName, String fileName) throws UtilException {
         URL url = fetchUrl(urlName);
         if(url != null) {
-            return util.FileUtil.downloadFile(url, fileName);
+            util.FileUtil.downloadFile(url, fileName);
         } else {
             throw new RuntimeException("Invalid URL");
         }
@@ -50,12 +56,12 @@ public class StreetSweepApp {
         try {
             dataUrl = new URL(url);
         } catch(MalformedURLException e) {
-            System.out.println("Error in StreetSweepApp fetchUrl method: " + e.getMessage());
+            throw new RuntimeException("Error in StreetSweepApp fetchUrl method: " + e.getMessage());
         }
         return dataUrl;
     }
 
-    private static List<CsvItem> convertFileToObjectList(String fileName, boolean headerRowPresent, CsvItem csvItem) {
+    private static List<CsvItem> convertFileToObjectList(String fileName, boolean headerRowPresent, CsvItem csvItem) throws UtilException {
         String[] fileLines = CsvUtil.readFileToLineArr(fileName, headerRowPresent);
         return csvUtil.storeCsvObjectsInList(fileLines, Constant.DELIMITER, csvItem.getMethodHashMap());
     }
@@ -74,8 +80,8 @@ public class StreetSweepApp {
         return scheduleItemList;
     }
 
-    private static List<ScheduleItem> saveAllScheduleItems(List<ScheduleItem> scheduleItemList, Dao<ScheduleItem> dao) throws SQLException {
-        return dao.saveAll(scheduleItemList);
+    private static List<ScheduleItem> saveAllScheduleItems(List<ScheduleItem> scheduleItemList, ScheduleItemService scheduleItemService) throws SQLException {
+        return scheduleItemService.saveAll(scheduleItemList);
     }
 
 }

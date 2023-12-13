@@ -3691,3 +3691,4 @@ main_id,st_name,dist,dist_name,start_time,end_time,side,from,to,miles,section,on
 3831,Gaylord St,3,North Dorchester,12:00,16:00,Even,Washington St,Chamberlain St,0.0922,,f,f,t,f,t,f,f,f,t,f,f,f,f,f,f,f,2023-09-08 19:50:31+00,GAYLO1,0,487
 3832,East Eighth St,5,South Boston,09:00,13:00,Even,K St,O St,0.3909,,f,f,t,f,t,f,f,f,f,t,f,f,f,f,f,f,2023-10-06 17:06:51+00,E EIG1,3929,5993
 3833,East Eighth St,5,South Boston,09:00,13:00,Odd,K St,O St,0.3909,,f,t,f,t,f,f,f,f,f,t,f,f,f,f,f,f,2023-10-06 17:06:36+00,E EIG1,3929,5993
+3834,Atlantic Ave,1T,Chinatown,12:00,16:00,Odd,Commercial St,Cross St,0.2282,,f,t,f,t,f,f,f,f,t,f,f,f,f,f,t,f,2023-11-30 19:46:00+00,ATLAN1,0,1205
